@@ -1,3 +1,4 @@
 <?php
-    echo "first PHP app"
+    require "./db/dbh.php";
+    echo "\nfirst PHP app"
 ?>

@@ -1,0 +1,3 @@
+1. apache, php, mysql setup
+2. phpmyadmin setup
+3. database connection using mysqli
