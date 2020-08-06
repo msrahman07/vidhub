@@ -8,12 +8,17 @@
     <div class="row">
         <?php
             
-            $fetchVideos = mysqli_query($con, "SELECT location FROM videos ORDER BY id DESC");
+            $fetchVideos = mysqli_query($con, "SELECT location, name FROM videos ORDER BY id DESC");
             while($row = mysqli_fetch_assoc($fetchVideos)){
                 $location = $row['location'];
-                echo '<div class="col-md-6 col-lg-4">';
-                echo "<video src='".$location."' controls width='320px' height='200px' >";
-                
+                $name = $row['name'];
+                echo '<div class="col-md-6 col-lg-6">';
+                    echo '<div>';
+                        echo "<video src='".$location."' controls width='320px' height='200px' >";
+                    echo '</div>';
+                    echo '<div class="float-left">';
+                        echo "<a href=''>".$name."</a>";
+                    echo '</div>';                
                 echo "</div>";
             }
         ?>    

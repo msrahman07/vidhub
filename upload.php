@@ -2,6 +2,7 @@
 <?php
 include("config.php");
 include("includes/header.inc.php");
+echo "<br><br>";
 //echo getcwd();
 if(isset($_POST['but_upload'])){
     // echo "Button clicked";
@@ -22,18 +23,20 @@ if(isset($_POST['but_upload'])){
     if( in_array($videoFileType,$extensions_arr) ){
 
     //   Check file size
-        if(($_FILES['file']['size'] >= $maxsize) || ($_FILES["file"]["size"] == 0)) {
+        if(($_FILES['file']['size'] >= $maxsize) || ($_FILES["file"]["Size"] == 0)) {
         echo "File too large. File must be less than 5MB.";
         }else{
-        // Upload
-        echo "<h1>hello".$target_file."</h1>";
-        if(move_uploaded_file($_FILES['file']['tmp_name'],$target_file)){
-            // Insert record
-            $query = "INSERT INTO videos(name,location) VALUES('".$name."','".$target_file."')";
-
-            mysqli_query($con,$query);
-            echo "Upload successfully.";
-        }
+            // Upload
+            if(move_uploaded_file($_FILES['file']['tmp_name'],$target_file)){
+                // Insert record
+                $query = $con->prepare("INSERT INTO videos(name,location) VALUES(?,?)");
+                $query->bind_param("ss", $name, $target_file);
+                $query->execute();
+                //mysqli_query($con,$query);
+                echo '<div class="alert alert-success" role="alert">';
+                    echo "Upload successfully.";
+                echo '</div>';
+            }
         }
 
     }else{
@@ -42,6 +45,8 @@ if(isset($_POST['but_upload'])){
 
     } 
 ?>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
 <div class="container">
     <div class="custom-file">
         <form method="post" action="" enctype='multipart/form-data'>
@@ -58,6 +63,13 @@ if(isset($_POST['but_upload'])){
     </div>
     
 </div>
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
 
 <?php
     include("includes/footer.inc.php")
