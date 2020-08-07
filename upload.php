@@ -1,4 +1,3 @@
-
 <?php
 include("config.php");
 include("includes/header.inc.php");
@@ -6,10 +5,10 @@ echo "<br><br>";
 //echo getcwd();
 if(isset($_POST['but_upload'])){
     // echo "Button clicked";
-    $maxsize = 50000000000000; // 5MB
+    $maxsize = 50000000000000;
 
     $name = $_FILES['file']['name'];
-    echo getimagesize($_FILES['file']['tmp_name'])."<br><br>";
+    //echo getimagesize($_FILES['file']['tmp_name'])."<br><br>";
     $target_dir = "videos/";
     //echo $target_dir;
     $target_file = $target_dir . $_FILES["file"]["name"];

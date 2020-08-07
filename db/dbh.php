@@ -1,21 +1,9 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "root";
-    $db = "vidhub";
-    $conn = new mysqli($servername, $username, $password, $db);
-
-    if($conn->conecct_error){
-        die("Connection failed: ".$conn->connect_error);
+class dbh {
+    public function deleteVideo($id, $con){
+        $query = $con->prepare("DELETE FROM videos WHERE id=?");
+        $query->bind_param("i", $id);
+        $query->execute();
     }
-    echo "Connected Successfully";
-    // Create database
-    // $sql = "CREATE DATABASE vidhub";
-    // if ($conn->query($sql) === TRUE) {
-    //     echo "Database created successfully";
-    // } else {
-    //     echo "Error creating database: " . $conn->error;
-    // }
-
-    $conn->close();
+}
 ?>
