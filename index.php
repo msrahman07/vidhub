@@ -12,8 +12,8 @@
             while($row = mysqli_fetch_assoc($fetchVideos)){
                 $location = $row['location'];
                 $name = $row['name'];
-                echo '<div class="col-md-6 col-lg-6">';
-                    echo '<div>';
+                echo '<div class="col-md-6 col-lg-4">';
+                    echo '<div class="float-left">';
                         echo "<video src='".$location."' controls width='320px' height='200px' >";
                     echo '</div>';
                     echo '<div class="float-left">';
