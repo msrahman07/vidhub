@@ -17,7 +17,10 @@ if(isset($_POST['but_upload'])){
 
     // Select file type
     $videoFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    $target_file = $target_dir . $name;
+    if(!empty($_POST['name'])){
+        $target_file = $target_dir . $name . "." . $videoFileType;
+        $name = $name . "." . $videoFileType;
+    }
     // Valid file extensions
     $extensions_arr = array("mp4","avi","3gp","mov","mpeg");
 
