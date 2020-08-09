@@ -43,8 +43,8 @@ if(isset($_POST['but_upload'])){
             // Upload
             if(move_uploaded_file($_FILES['file']['tmp_name'],$target_file)){
                 // Insert record
-                $query = $con->prepare("INSERT INTO videos(name,location) VALUES(?,?)");
-                $query->bind_param("ss", $name, $target_file);
+                $query = $con->prepare("INSERT INTO videos(name,location,user_id) VALUES(?,?,?)");
+                $query->bind_param("ssi", $name, $target_file, $_SESSION["id"]);
                 $query->execute();
                 //mysqli_query($con,$query);
                 echo '<div class="alert alert-success" role="alert">';
