@@ -95,3 +95,8 @@
         <p>Already have an account? <a href="login.php">Login here</a>.</p>
     </form>
 </div>
+
+
+<?php
+include("includes/footer.inc.php");
+?>
