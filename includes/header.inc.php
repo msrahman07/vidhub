@@ -23,6 +23,25 @@
       <li class="nav-item">
         <a class="nav-link" href="upload.php">upload</a>
       </li>
+      
+      <?php
+      session_start(); 
+      if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){ ?>
+        <li class="nav-item">
+          <a class="nav-link" href="login.php">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="register.php">Sign Up</a>
+        </li>
+      <?php } 
+      if(isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true){ ?>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">Logout</a>
+        </li>
+      <?php } ?>
+
+
+      
     </ul>
   </div>
 </nav>

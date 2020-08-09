@@ -91,3 +91,8 @@ if($_SERVER["REQUEST_METHOD"] = "POST"){
         <p>Do not have an account? <a href="register.php">Register here</a>.</p>
     </form>
 </div>
+
+
+<?php
+include("includes/footer.inc.php");
+?>
